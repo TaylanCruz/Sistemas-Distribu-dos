@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message File {
+    string filename = 1;
+    bytes content = 2;
+    string mimeType = 3;
+}
+
+message ChatMessage {
+    enum MessageType {
+        TEXT = 0;
+        FILE = 1;
+    }
+
+    MessageType type = 1;
+    string sender = 2;
+    string recipient = 3;
+    oneof content {
+        string text = 4;
+        File file = 5;
+    }
+}
